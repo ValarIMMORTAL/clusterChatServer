@@ -1,0 +1,22 @@
+#pragma once
+
+enum enMsgType
+{
+    LOGIN_MSG = 0,
+    LOGIN_MSG_ACK,
+    REG_MSG,
+    REG_MSG_ACK,
+    ONE_CHAT_MSG,
+    ONE_CHAT_MSG_ACK,
+    ADD_FRIEND_MSG,
+    CREATE_GROUP_MSG,
+    ADD_GROUP_MSG,
+    GROUP_CHAT_MSG,
+    PRIVATE_CHAT_MSG,
+    LOGOUT_MSG,
+    CLIENT_EXIT,
+    SERVER_EXIT,
+    FILE_MSG,
+    FILE_MSG_ACK,
+    MSG_TYPE_MAX
+};

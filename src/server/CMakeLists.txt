@@ -1,0 +1,9 @@
+#定义变量包含所有的源文件
+aux_source_directory(. SRC_LIST)
+aux_source_directory(./db DB_LIST)
+
+# 指定生成可执行文件
+add_executable(clusterChatServer ${SRC_LIST} ${DB_LIST})
+
+# 指定需要链接的库
+target_link_libraries(clusterChatServer muduo_net muduo_base mysqlclient pthread)
