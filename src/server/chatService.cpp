@@ -23,17 +23,20 @@ ChatService::~ChatService()
 {
 }
 
+// 服务器异常，业务重置
 void ChatService::reset()
 {
     _userModel.resetState();
 }
 
+// 获取单例对象的接口函数
 ChatService *ChatService::instance()
 {
     static ChatService service;
     return &service;
 }
 
+// 获取消息对应的处理器
 MsgHandler ChatService::getHandler(int msgid)
 {
     auto it = _msgHandlerMap.find(msgid);
@@ -48,6 +51,7 @@ MsgHandler ChatService::getHandler(int msgid)
     return _msgHandlerMap[msgid]; // Return the corresponding message handler
 }
 
+// 处理登录业务
 void ChatService::login(const TcpConnectionPtr &conn, json &js, Timestamp time)
 {
     LOG_INFO << "User login: " << js.dump().c_str();
@@ -108,6 +112,7 @@ void ChatService::login(const TcpConnectionPtr &conn, json &js, Timestamp time)
     }
 }
 
+// 处理注册业务
 void ChatService::reg(const TcpConnectionPtr &conn, json &js, Timestamp time)
 {
     // Handle registration logic here
