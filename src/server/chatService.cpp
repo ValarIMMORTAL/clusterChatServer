@@ -91,6 +91,15 @@ void ChatService::login(const TcpConnectionPtr &conn, json &js, Timestamp time)
             res["msgid"] = LOGIN_MSG_ACK;
             res["error"] = 0;
             res["id"] = user.getId();
+            
+            // 查询用户是否有离线消息
+            vector<string> msg = _offlineMsgModel.query(user.getId());
+            if(!msg.empty())
+            {
+                res["offlinemsg"] = msg;
+                _offlineMsgModel.remove(user.getId());
+            }
+
             conn->send(res.dump());
         }
     }
@@ -144,7 +153,6 @@ void ChatService::oneChat(const TcpConnectionPtr& conn, json& js, Timestamp time
         {
             // 找到用户
             it->second->send(js.dump());
-            return;
         }
         else
         {
@@ -152,7 +160,8 @@ void ChatService::oneChat(const TcpConnectionPtr& conn, json& js, Timestamp time
             json res;
             res["msgid"] = ONE_CHAT_MSG_ACK;
             res["error"] = 1;
-            res["errmsg"] = "对方不在线";
+            res["errmsg"] = "对方不在线，消息已保存";
+            _offlineMsgModel.insert(destId, js.dump());
             conn->send(res.dump());
         }
     }

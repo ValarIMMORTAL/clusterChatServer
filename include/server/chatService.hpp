@@ -6,6 +6,7 @@
 #include <functional>
 #include <mutex>
 #include "userModel.hpp"
+#include "offlineMessageModel.hpp"
 
 using json = nlohmann::json;
 using namespace std;
@@ -27,6 +28,7 @@ private:
     std::mutex _connMutex;
     // 数据操作类对象
     UserModel _userModel;
+    OfflineMessageModel _offlineMsgModel;
     ChatService();
     ~ChatService();
 public:
