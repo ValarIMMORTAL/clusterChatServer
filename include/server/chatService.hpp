@@ -33,6 +33,7 @@ private:
     ~ChatService();
 public:
     static ChatService* instance();
+    void reset();
     MsgHandler getHandler(int msgid);
     void login(const TcpConnectionPtr& conn, json& js, Timestamp time);
     void reg(const TcpConnectionPtr& conn, json& js, Timestamp time);

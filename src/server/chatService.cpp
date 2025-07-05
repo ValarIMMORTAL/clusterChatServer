@@ -21,16 +21,11 @@ ChatService::ChatService(/* args */)
  */
 ChatService::~ChatService()
 {
-    // 打印服务实例关闭的日志信息
-    LOG_INFO << "ChatService is closed\n";
-    for(auto userConn : _userConnMap)
-    {
-        clientCloseException(userConn.second);
-        if(userConn.second)
-        {
-            userConn.second->shutdown();
-        }
-    }
+}
+
+void ChatService::reset()
+{
+    _userModel.resetState();
 }
 
 ChatService *ChatService::instance()
