@@ -71,8 +71,17 @@
         "thread": "cpp",
         "cinttypes": "cpp",
         "valarray": "cpp",
-        "*.inc": "cpp"
+        "*.inc": "cpp",
+        "list": "cpp",
+        "queue": "cpp"
     },
     "C_Cpp.default.compilerPath": "/usr/bin/g++",
-    "C_Cpp.errorSquiggles": "disabled"
+    "editor.minimap.enabled": true,
+    "C_Cpp.autocomplete": "Default",
+    "[cpp]": {
+        "editor.quickSuggestions": true
+    },
+    "[c]": {
+        "editor.quickSuggestions": true
+    }
 }

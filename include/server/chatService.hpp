@@ -6,6 +6,8 @@
 #include <functional>
 #include <mutex>
 #include "userModel.hpp"
+#include "friendModel.hpp"
+#include "groupModel.hpp"
 #include "offlineMessageModel.hpp"
 
 using json = nlohmann::json;
@@ -32,6 +34,10 @@ private:
     std::mutex _connMutex;
     // 数据操作类对象
     UserModel _userModel;
+    // 好友
+    FriendModel _friendModel;
+    // 群组
+    GroupModel _groupModel;
     // 离线消息
     OfflineMessageModel _offlineMsgModel;
     ChatService();
@@ -50,6 +56,16 @@ public:
     void reg(const TcpConnectionPtr &conn, json &js, Timestamp time);
     // 一对一聊天
     void oneChat(const TcpConnectionPtr &conn, json &js, Timestamp time);
+    // 添加好友
+    void addFriend(const TcpConnectionPtr &conn, json &js, Timestamp time);
+    // 创建群组
+    void createGroup(const TcpConnectionPtr &conn, json &js, Timestamp time);
+    // 加入群组
+    void addGroup(const TcpConnectionPtr &conn, json &js, Timestamp time);
+    // 群组聊天
+    void groupChat(const TcpConnectionPtr &conn, json &js, Timestamp time);
+    // 退出登录
+    void loginOut(const TcpConnectionPtr &conn, json &js, Timestamp time);
     // 处理客户端异常退出
     void clientCloseException(const TcpConnectionPtr &conn);
 };
