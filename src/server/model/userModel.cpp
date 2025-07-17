@@ -21,10 +21,10 @@ bool UserModel::insert(User &user)
     return false;
 }
 
-User UserModel::query(string name)
+User UserModel::query(int id)
 {
     char sql[1024] = {0};
-    sprintf(sql, "select * from user where name='%s'", name.c_str());
+    sprintf(sql, "select * from user where id='%d'", id);
     MySQL mysql;
     if(!mysql.connect())
     {

@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <functional>
 #include <mutex>
+#include "redis.hpp"
 #include "userModel.hpp"
 #include "friendModel.hpp"
 #include "groupModel.hpp"
@@ -38,6 +39,8 @@ private:
     FriendModel _friendModel;
     // 群组
     GroupModel _groupModel;
+    // Redis操作对象
+    Redis _redis;
     // 离线消息
     OfflineMessageModel _offlineMsgModel;
     ChatService();
@@ -68,4 +71,6 @@ public:
     void loginOut(const TcpConnectionPtr &conn, json &js, Timestamp time);
     // 处理客户端异常退出
     void clientCloseException(const TcpConnectionPtr &conn);
+    // 从redis消息队列中获取订阅的消息
+    void handleRedisSubscribeMessage(int userid, string msg);
 };

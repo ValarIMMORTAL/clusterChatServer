@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 {
     if (argc < 3)
     {
-        cerr << "command invalid! example: ./ChatClient 127.0.0.1 6000" << endl;
+        cerr << "command invalid! example: ./ChatClient 127.0.0.1 8000" << endl;
         exit(-1);
     }
 
@@ -93,16 +93,17 @@ int main(int argc, char *argv[])
         {
         case 1: // login业务
         {
-            char name[50] = {0};
+            int id = 0;
             char pwd[50] = {0};
-            cout << "username: ";
-            cin.getline(name, 50);
+            cout << "userid:";
+            cin >> id;
+            cin.get(); // 读掉缓冲区残留的回车
             cout << "userpassword: ";
             cin.getline(pwd, 50);
 
             json js;
             js["msgid"] = LOGIN_MSG;
-            js["name"] = name;
+            js["id"] = id;
             js["password"] = pwd;
             string request = js.dump();
 
