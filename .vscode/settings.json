@@ -91,5 +91,6 @@
             "strings": "on",
             "other": "on"
         }
-    }
+    },
+    "C_Cpp.intelliSenseEngine": "disabled"
 }
