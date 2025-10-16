@@ -105,7 +105,8 @@ int main(int argc, char *argv[])
         cout << "choice: ";
         int choice = 0;
         cin >> choice;
-        cin.get(); // 读取缓冲区残留的回车
+        // 输入成功，清除缓冲区中的回车
+        cin.get();
         switch (choice)
         {
         case 1: // login业务
@@ -173,7 +174,8 @@ int main(int argc, char *argv[])
         default:
         {
             cerr << "invalid input!" << endl;
-            break;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
         break;
         }
