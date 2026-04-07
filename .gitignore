@@ -2,3 +2,4 @@ build/
 bin/
 .clang-format
 .cache/
+recovery_bundle_*/
